@@ -151,16 +151,12 @@ public class Utils {
         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
                 SystemProperties.get(Constants.PROP_DEVICE));
         String type = SystemProperties.get(Constants.PROP_RELEASE_TYPE).toLowerCase(Locale.ROOT);
-	String ziptype = SystemProperties.get(Constants.PROP_ZIP_TYPE).toLowerCase(Locale.ROOT);
-	if (ziptype == null) ziptype = "Q";
-
         String serverUrl = SystemProperties.get(Constants.PROP_UPDATER_URI);
         if (serverUrl.trim().isEmpty()) {
             serverUrl = context.getString(R.string.updater_server_url);
         }
 
-        return serverUrl.replace("{device}", device)
-	.replace("{ziptype}", ziptype);
+        return serverUrl.replace("{device}", device);
     }
 
     public static String getChangelogURL(Context context) {
