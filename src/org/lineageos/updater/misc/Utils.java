@@ -150,6 +150,8 @@ public class Utils {
         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
                 SystemProperties.get(Constants.PROP_DEVICE));
         String type = BuildInfoUtils.getBuildType().toLowerCase(Locale.ROOT);
+	String ziptype = SystemProperties.get(Constants.PROP_ZIP_TYPE).toLowerCase(Locale.ROOT);
+	if (ziptype == null) ziptype = "Vanilla";
 
         String serverUrl = SystemProperties.get(Constants.PROP_UPDATER_URI);
         String overrideUrl = PreferenceManager.getDefaultSharedPreferences(context)
@@ -163,7 +165,8 @@ public class Utils {
         }
 
         return serverUrl.replace("{device}", device)
-                .replace("{type}", type);
+                .replace("{type}", type)
+		.replace("{ziptype}", ziptype);
     }
 
     public static String getUpgradeBlockedURL(Context context) {
